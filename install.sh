@@ -1,12 +1,12 @@
 #!/bin/sh
-# Install the deploy-to-cloudflare skill.
+# Install the noobit-deploy-cloudflare skill.
 # Usage:  ./install.sh         -> Claude Code   (~/.claude/skills)
 #         ./install.sh --all   -> also OpenCode (~/.config/opencode/skills)
 #                                 and Antigravity (~/.gemini/config/skills, plus the
 #                                 older ~/.gemini/antigravity/skills if it exists)
 set -e
 ROOT="$(cd "$(dirname "$0")" && pwd)"
-NAME="deploy-to-cloudflare"
+NAME="noobit-deploy-cloudflare"
 SRC="$ROOT/$NAME"
 [ -f "$SRC/SKILL.md" ] || { echo "SKILL.md not found in $SRC"; exit 1; }
 

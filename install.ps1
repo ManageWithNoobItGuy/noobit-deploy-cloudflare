@@ -1,10 +1,10 @@
-# Install the deploy-to-cloudflare skill on Windows.
+# Install the noobit-deploy-cloudflare skill on Windows.
 # Usage:  powershell -ExecutionPolicy Bypass -File .\install.ps1        -> Claude Code
 #         powershell -ExecutionPolicy Bypass -File .\install.ps1 -All   -> also OpenCode and Antigravity
 param([switch]$All)
 $ErrorActionPreference = "Stop"
 
-$Name = "deploy-to-cloudflare"
+$Name = "noobit-deploy-cloudflare"
 $Src  = Join-Path $PSScriptRoot $Name
 if (-not (Test-Path (Join-Path $Src "SKILL.md"))) { throw "SKILL.md not found in $Src" }
 

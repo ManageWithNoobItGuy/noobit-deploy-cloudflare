@@ -1,5 +1,5 @@
 ---
-name: deploy-to-cloudflare
+name: noobit-deploy-cloudflare
 description: Deploys a beginner's web app (website + D1 database) to Cloudflare Workers end-to-end with Wrangler and does every step itself - checks or installs Node.js, logs in, prepares a brand-new Cloudflare account (registers the workers.dev subdomain, no test page needed), creates the D1 database and tables, deploys, tests, and returns the live URL - while showing a numbered progress checklist. Use whenever the user asks to deploy, publish, host, or put a site online, including Thai requests like "deploy เว็บ", "ขึ้นเว็บ", "เอาเว็บขึ้น Cloudflare", "ทำให้คนอื่นเข้าเว็บได้", even if they never mention Wrangler, Workers or D1.
 ---
 

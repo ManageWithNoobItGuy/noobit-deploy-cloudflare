@@ -1,4 +1,4 @@
-# deploy-to-cloudflare ☁️🚀
+# noobit-deploy-cloudflare ☁️🚀
 
 **Skill สำหรับ AI Agent ที่พาเว็บ + ฐานข้อมูลขึ้น Cloudflare Workers และ D1 ให้มือใหม่แบบครบทุกขั้นตอน**
 ผู้เรียนพิมพ์แค่ประโยคเดียวว่า **"deploy เว็บนี้ขึ้น Cloudflare ให้หน่อย"** แล้ว AI จะทำให้เกือบทั้งหมด ตั้งแต่ติดตั้ง Node.js ไปจนถึงส่งลิงก์เว็บที่ออนไลน์แล้วกลับมา
@@ -54,7 +54,7 @@ AI จะไม่ขอ token, API key หรือรหัสผ่านใ�
 ## 📁 ใน repo มีอะไรบ้าง
 
 ```
-deploy-to-cloudflare/                     ← ตัว skill (ก๊อปทั้งโฟลเดอร์นี้ไปติดตั้ง)
+noobit-deploy-cloudflare/                 ← ตัว skill (ก๊อปทั้งโฟลเดอร์นี้ไปติดตั้ง)
 ├── SKILL.md                              ← คำสั่งหลักที่ AI อ่าน
 ├── scripts/ensure-workers-subdomain.mjs  ← จองชื่อ workers.dev ให้บัญชีใหม่
 └── templates/                            ← โปรเจกต์ตัวอย่างที่ใช้ได้จริง (เว็บ + API + D1)
@@ -64,8 +64,8 @@ deploy-to-cloudflare/                     ← ตัว skill (ก๊อปท�
     └── public/index.html                 ← เว็บ "รายการของฉัน" เพิ่ม/ลบข้อมูลใน D1 ได้
 
 class-template/                           ← โปรเจกต์ตั้งต้นสำหรับแจกนักเรียน (มี skill ติดตั้งไว้แล้วทั้ง 3 เครื่องมือ)
-├── .claude/skills/deploy-to-cloudflare/  ← สำหรับ Claude Code (OpenCode ก็อ่านได้)
-├── .agents/skills/deploy-to-cloudflare/  ← สำหรับ Antigravity (OpenCode ก็อ่านได้)
+├── .claude/skills/noobit-deploy-cloudflare/ ← สำหรับ Claude Code (OpenCode ก็อ่านได้)
+├── .agents/skills/noobit-deploy-cloudflare/ ← สำหรับ Antigravity (OpenCode ก็อ่านได้)
 ├── .claude/settings.json                 ← Claude Code: อนุญาต npx wrangler / npm / node อัตโนมัติ
 ├── opencode.json                         ← OpenCode: อนุญาตคำสั่งชุดเดียวกัน
 └── public/ src/ migrations/ wrangler.jsonc package.json
@@ -91,7 +91,7 @@ sync-class-template.sh                    ← สำหรับคนดูแ�
 💡 ถ้านักเรียนมี Node.js อยู่แล้ว จะดึงแค่โฟลเดอร์ template ด้วยคำสั่งเดียวก็ได้:
 
 ```bash
-npx degit ManageWithNoobItGuy/deploy-to-cloudflare/class-template my-app
+npx degit ManageWithNoobItGuy/noobit-deploy-cloudflare/class-template my-app
 ```
 
 หมายเหตุ: OpenCode อ่าน skill ได้ทั้งจาก `.claude/skills/` และ `.agents/skills/` เลยอาจเห็น skill ชื่อซ้ำ 2 อัน เนื้อหาเหมือนกัน ใช้ได้ปกติ
@@ -106,18 +106,18 @@ npx degit ManageWithNoobItGuy/deploy-to-cloudflare/class-template my-app
 
 เปิด Claude Code / OpenCode / Antigravity แล้วพิมพ์ว่า
 
-> ช่วยติดตั้ง skill จาก https://github.com/ManageWithNoobItGuy/deploy-to-cloudflare ให้หน่อย
+> ช่วยติดตั้ง skill จาก https://github.com/ManageWithNoobItGuy/noobit-deploy-cloudflare ให้หน่อย
 
 **วิธีที่ 2: ใช้สคริปต์**
 
 macOS / Linux:
 
 ```bash
-git clone https://github.com/ManageWithNoobItGuy/deploy-to-cloudflare.git
+git clone https://github.com/ManageWithNoobItGuy/noobit-deploy-cloudflare.git
 ```
 
 ```bash
-cd deploy-to-cloudflare && ./install.sh --all
+cd noobit-deploy-cloudflare && ./install.sh --all
 ```
 
 Windows (PowerShell): ดาวน์โหลด ZIP แล้วแตกไฟล์ เปิด PowerShell ในโฟลเดอร์นั้น แล้วรัน
@@ -128,13 +128,13 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1 -All
 
 ไม่ใส่ `--all` / `-All` = ลงให้ Claude Code อย่างเดียว ใส่ = ลงให้ OpenCode และ Antigravity ด้วย
 
-**วิธีที่ 3: ก๊อปเอง** ก๊อปโฟลเดอร์ `deploy-to-cloudflare/` ไปไว้ที่
+**วิธีที่ 3: ก๊อปเอง** ก๊อปโฟลเดอร์ `noobit-deploy-cloudflare/` ไปไว้ที่
 
 | เครื่องมือ | ใส่ในโปรเจกต์ | ใส่ทั้งเครื่อง |
 |---|---|---|
-| Claude Code | `.claude/skills/deploy-to-cloudflare/` | `~/.claude/skills/deploy-to-cloudflare/` |
-| OpenCode | `.opencode/skills/…`, `.agents/skills/…` หรือ `.claude/skills/…` | `~/.config/opencode/skills/deploy-to-cloudflare/` |
-| Antigravity | `.agents/skills/deploy-to-cloudflare/` | `~/.gemini/config/skills/deploy-to-cloudflare/` (เวอร์ชันเก่าใช้ `~/.gemini/antigravity/skills/`) |
+| Claude Code | `.claude/skills/noobit-deploy-cloudflare/` | `~/.claude/skills/noobit-deploy-cloudflare/` |
+| OpenCode | `.opencode/skills/…`, `.agents/skills/…` หรือ `.claude/skills/…` | `~/.config/opencode/skills/noobit-deploy-cloudflare/` |
+| Antigravity | `.agents/skills/noobit-deploy-cloudflare/` | `~/.gemini/config/skills/noobit-deploy-cloudflare/` (เวอร์ชันเก่าใช้ `~/.gemini/antigravity/skills/`) |
 
 ---
 
@@ -176,7 +176,7 @@ skill สั่งให้ AI ทำเองทุกขั้นแล้ว 
 
 ## 🛠️ สำหรับคนดูแล repo
 
-ตัว skill มี 3 ชุดใน repo (ชุดหลัก + 2 ชุดใน class-template) ให้แก้ที่ `deploy-to-cloudflare/` เท่านั้น แล้วรัน
+ตัว skill มี 3 ชุดใน repo (ชุดหลัก + 2 ชุดใน class-template) ให้แก้ที่ `noobit-deploy-cloudflare/` เท่านั้น แล้วรัน
 
 ```bash
 ./sync-class-template.sh
@@ -195,7 +195,7 @@ skill สั่งให้ AI ทำเองทุกขั้นแล้ว 
 - Facebook: https://www.facebook.com/ManageWithNoobITguy
 - TikTok: https://www.tiktok.com/@noobitguy
 
-ติดปัญหาหรือมีไอเดียปรับปรุง เปิด [Issue](https://github.com/ManageWithNoobItGuy/deploy-to-cloudflare/issues) ได้เลยครับ
+ติดปัญหาหรือมีไอเดียปรับปรุง เปิด [Issue](https://github.com/ManageWithNoobItGuy/noobit-deploy-cloudflare/issues) ได้เลยครับ
 
 ## License
 
